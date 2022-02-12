@@ -1,7 +1,4 @@
-stage:
-  deploy
-only:
-  - master
-script:
-  - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/idb-web-app.git
-  - git push -f heroku master
+heroku:
+  stage: build
+  script:
+    - echo "Application deployed"
