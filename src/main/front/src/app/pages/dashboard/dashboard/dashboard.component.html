@@ -1,0 +1,15 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav class="side-nav" mode="side" opened>
+        <mat-list role="list">
+            <mat-list-item>
+              <button mat-button [routerLink]="['transactions']" routerLinkActive="active">Transactions</button>
+            </mat-list-item>
+            <mat-list-item>
+              <button mat-button [routerLink]="['settings']" routerLinkActive="active">Settings</button>
+            </mat-list-item>
+          </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

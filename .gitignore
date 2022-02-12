@@ -1,0 +1,27 @@
+### Maven ###
+!.mvn/wrapper/maven-wrapper.jar
+### Mac files ###
+.DS_Store
+src/.DS_Store
+src/main/.DS_Store
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+src/main/front/.vscode
+
+### Project###
+src/main/resources/application.properties
+target/
+/node/
+/src/main/front/node/
+/src/main/resources/static/
+!**/src/main/**
+!**/src/test/**
+HELP.md
+
+
