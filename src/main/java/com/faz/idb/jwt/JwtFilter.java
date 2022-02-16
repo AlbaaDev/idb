@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.faz.idb.service.UserService;
+import com.faz.idb.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,7 +21,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 
 /**
- * @author abi
+ * @author FAZLIU Arber
  * Class to filter the Jwt
  */
 @Component
@@ -31,7 +31,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private JwtUtility jwtUtility;
 
     @Autowired
-    private UserService userService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, 
@@ -41,12 +41,12 @@ public class JwtFilter extends OncePerRequestFilter {
         String jwtToken = null;
         String userName = null;
 
-        if(null != authorization && authorization.startsWith("Bearer ")) {
+        if(authorization != null && authorization.startsWith("Bearer ")) {
             jwtToken = authorization.substring(7);
             userName = jwtUtility.getUsernameFromToken(jwtToken);
         }
-        if(null != userName && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userService.loadUserByUsername(userName);
+        if(userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
 
             if(jwtUtility.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken

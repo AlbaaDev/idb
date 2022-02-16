@@ -1,53 +1,109 @@
-<div class="identification-div mt-5">
-    <form (ngSubmit)= "onSubmit()" [formGroup]="signUpForm">
-        <mat-card class="example-card">
-            <h1 class="text-center">Sign up</h1>
-            <mat-card-content>
-                <mat-form-field appearance="standard" class="w-100">
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" placeholder="Enter your email...">
-                    <mat-error *ngIf="email?.dirty && email?.invalid && !email?.errors?.['required']">
-                        Please enter a valid email address
-                    </mat-error>
-                    <mat-error *ngIf="email?.pristine && email?.errors?.['required']">
-                        Email is required
-                    </mat-error>
-                </mat-form-field>
-              <mat-form-field appearance="standard" class="w-100">
-                    <mat-label>Password</mat-label>
-                  <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password..."
-                        formControlName="password">
-                    <button mat-icon-button matSuffix (click)="hide = !hide"
-                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                    <mat-error *ngIf="submitted && password?.invalid && password?.errors?.['required']">
-                      Password is required
-                    </mat-error>
-                    <mat-error *ngIf="submitted && password?.errors?.['minlength']">
-                        Password must be at least 6 characters long.
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="standard" class="w-100">
-                    <mat-label>Confirm Password</mat-label>
-                    <input matInput [type] = "hide2 ? 'password' : 'text'" placeholder="Confirm the password..."
-                           formControlName="confirmPassword">
-                    <button mat-icon-button matSuffix (click) = "hide2 = !hide2"
-                            [attr.aria-label] = "'Hide password'" [attr.aria-pressed] = "hide">
-                        <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                    <mat-error *ngIf="submitted && confirmPassword?.errors?.['required']">
-                      Confirm password is required
-                    </mat-error>
-                    <mat-error *ngIf="submitted && confirmPassword?.errors?.['mustMatch']">
-                      Passwords must match
-                    </mat-error>
-                </mat-form-field>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button color="primary" class="w-100" type="submit">Sign up</button>
-            </mat-card-actions>
-            <a routerLink="/login" class="">Already have an account ?</a>
-        </mat-card>
-    </form>
+<div class="identification-div">
+  <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
+    <mat-card class="example-card">
+      <h1 class="text-center">Sign up</h1>
+      <div class="mat-form-field--inline">
+        <mat-form-field appearance="standard" class="w-50">
+          <mat-label>First name</mat-label>
+          <input matInput formControlName="firstName" placeholder="Your first name..." value="">
+          <mat-error *ngIf="(firstName?.dirty || firstName?.pristine) && firstName?.errors?.['required']">
+            First name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="w-50 ml-2">
+          <mat-label>Last name</mat-label>
+          <input matInput formControlName="lastName" placeholder="" value="">
+          <mat-error *ngIf="(lastName?.dirty || lastName?.pristine) && lastName?.errors?.['required']">
+            Last name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-radio-group aria-label="Gender" formControlName="gender">
+        <mat-radio-button [value]="gender.MALE" >Male</mat-radio-button>
+        <mat-radio-button [value]="gender.FEMALE">Female</mat-radio-button>
+        <mat-radio-button [value]="gender.OTHER">Other</mat-radio-button>
+      </mat-radio-group>
+      <mat-card-content>
+        <mat-form-field appearance="standard" class="w-100">
+          <mat-label>Street adress </mat-label>
+          <input matInput formControlName="adress">
+          <mat-error *ngIf="(adress?.dirty || adress?.pristine) && adress?.errors?.['required']">
+            Street adress
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="w-100">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city">
+          <mat-error *ngIf="(city?.dirty || city?.pristine) && city?.errors?.['required']">
+            City is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="w-100">
+          <mat-label>State / Province</mat-label>
+          <input matInput formControlName="province">
+          <mat-error *ngIf="(province?.dirty || province?.pristine) && province?.errors?.['required']">
+            State / Province
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="w-100">
+          <mat-label>Postal / Zip Code</mat-label>
+          <input matInput formControlName="postCode">
+          <mat-error *ngIf="(postCode?.dirty || postCode?.pristine) && postCode?.errors?.['required']">
+            Postal / Zip Code
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="w-100">
+          <mat-label>Phone number</mat-label>
+          <input matInput formControlName="phoneNumber">
+          <mat-error *ngIf="(phoneNumber?.dirty || phoneNumber?.pristine) && phoneNumber?.errors?.['required']">
+            Phone number is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="w-100">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Enter your email..." value="">
+          <mat-error *ngIf="email?.dirty && email?.invalid && !email?.errors?.['required']">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="(email?.dirty || email?.pristine) && email?.errors?.['required']">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="w-100">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password..."
+                 formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide"
+                  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="(password?.dirty || password?.pristine) && password?.invalid && password?.errors?.['required']">
+            Password is required
+          </mat-error>
+          <mat-error *ngIf="password?.dirty && password?.errors?.['minlength']">
+            Password must be at least 6 characters long.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="w-100">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput [type]="hide2 ? 'password' : 'text'" placeholder="Confirm the password..."
+                 formControlName="confirmPassword">
+          <button mat-icon-button matSuffix (click)="hide2 = !hide2"
+                  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="(confirmPassword?.dirty || confirmPassword?.pristine) && confirmPassword?.errors?.['required']">
+            Confirm password is required
+          </mat-error>
+          <mat-error *ngIf="(confirmPassword?.dirty || confirmPassword?.pristine) && confirmPassword?.errors?.['mustMatch']">
+            Passwords must match
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" class="w-100" type="submit">Sign up</button>
+      </mat-card-actions>
+      <a routerLink="/login" class="">Already have an account ? Click to login</a>
+    </mat-card>
+  </form>
 </div>

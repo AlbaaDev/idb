@@ -26,7 +26,7 @@ import static com.faz.idb.security.SecurityConstants.SECRET;
 import static com.faz.idb.security.SecurityConstants.TOKEN_PREFIX;
 
 /**
- * @author abi
+ * @author FAZLIU Arber
  * Class that permite the user to authenticate with JWT token
  */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -78,8 +78,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withSubject(((LoggedUser) auth.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
-        System.out.println("token : " + token);
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
-    	System.out.println("successfulAuthentication" + req);
     }
 }

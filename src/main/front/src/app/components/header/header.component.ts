@@ -1,7 +1,5 @@
-import { SidenavService } from '../../services/sidenav.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,16 +8,20 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   opened = true;
-  constructor(private authService: AuthService) { }
+  firstName?: String;
+  lastName?: String;
+  constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
+    this.firstName = JSON.parse(localStorage.getItem("loggedUser") as string).firstName;
+    this.lastName = JSON.parse(localStorage.getItem("loggedUser") as string).lastName;
   }
 
   isAuth() {
-    return this.authService.loggedIn();
+    return this.accountService.loggedIn();
   }
 
   logout() {
-    this.authService.logout();
+    this.accountService.logout();
   }
 }

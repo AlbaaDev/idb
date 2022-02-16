@@ -4,7 +4,7 @@
 package com.faz.idb.jwt;
 
 /**
- * @author abi
+ * @author FAZLIU Arber
  *
  */
 public class JwtRequest {

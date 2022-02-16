@@ -8,16 +8,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { SettingsComponent } from './pages/settings/settings.component';
 import {TransactionsComponent} from "./pages/transactions/transactions.component";
 import {CardsComponent} from "./pages/cards/cards.component";
+import {SendMoneyComponent} from "./pages/send-money/send-money.component";
+import {AuthGuard} from "./_helpers/auth-guard.service";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignUpComponent},
   {path: 'home', component: HomeComponent},
   {
-    path: 'dashboard', component: DashboardComponent,
+    path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
       {path: 'settings', component: SettingsComponent},
       {path: 'transactions', component: TransactionsComponent},
+      {path: 'send', component: SendMoneyComponent},
       {path: 'cards', component: CardsComponent},
     ]
   },

@@ -1,6 +1,5 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { SidenavService } from 'src/app/services/sidenav.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AccountService } from 'src/app/services/user.service';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
@@ -8,13 +7,10 @@ import { MatSidenav } from '@angular/material/sidenav';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
+export class DashboardComponent implements OnInit {
   @ViewChild('sidenav') public sidenav?: MatSidenav;
 
-  constructor(private authService: AuthService, private sidenavService: SidenavService) { }
-  ngAfterViewInit(): void {
-    this.sidenavService.setSidenav(this.sidenav as MatSidenav);
-  }
+  constructor(private authService: AccountService) { }
   ngOnInit(): void { }
   isAuth() {
     return this.authService.loggedIn();

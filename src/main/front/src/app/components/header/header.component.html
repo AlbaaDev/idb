@@ -1,11 +1,14 @@
 <mat-toolbar color="primary" *ngIf="!isAuth()">
-    <span class="span-spacer"></span>
-    <button mat-button [routerLink]="['login']" routerLinkActive="active">Login</button>
-    <button mat-button [routerLink]="['signup']" routerLinkActive="active">Sign Up</button>
+  IDB
+  <span class="span-spacer"></span>
+  <button mat-button [routerLink]="['login']" routerLinkActive="active">Login</button>
+  <button mat-button [routerLink]="['signup']" routerLinkActive="active">Sign Up</button>
 </mat-toolbar>
 
 <mat-toolbar color="primary" *ngIf="isAuth()">
-    <span class="span-spacer"></span>
-    <button mat-button (click) = "logout()" routerLinkActive="active">Logout</button>
+  IDB
+  <span class="span-spacer"></span>
+  {{firstName}} {{lastName}}
+  <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
 </mat-toolbar>
 

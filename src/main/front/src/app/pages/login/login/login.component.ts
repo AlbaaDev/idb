@@ -1,4 +1,4 @@
-import { AuthService } from 'src/app/services/auth.service';
+import { AccountService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormGroupDirective, NgForm, FormBuilder, FormsModule} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   );
 
   constructor(private router: Router, private formBuilder: FormBuilder,
-              private authService: AuthService) {
+              private authService: AccountService) {
   }
 
   ngOnInit(): void {

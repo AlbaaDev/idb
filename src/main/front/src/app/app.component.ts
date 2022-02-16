@@ -1,4 +1,3 @@
-import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'IDB';
-  constructor(private authService: AuthService) {  }
-  isAuth() {
-    return this.authService.loggedIn();
-  }
 }

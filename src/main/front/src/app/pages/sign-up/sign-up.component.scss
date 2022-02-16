@@ -1,8 +1,28 @@
 .identification-div {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
 .mat-icon {
   font-size: 15px;
+}
+
+.mat-form-field--inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mat-form-field--inline .mat-form-field {
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.mat-form-field--inline .mat-form-field:nth-child(1) {
+  margin-right: 40px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
 }

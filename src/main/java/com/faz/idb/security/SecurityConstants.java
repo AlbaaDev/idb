@@ -4,7 +4,7 @@
 package com.faz.idb.security;
 
 /**
- * @author abi
+ * @author FAZLIU Arber
  *
  */
 public class SecurityConstants {

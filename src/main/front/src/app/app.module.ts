@@ -27,10 +27,12 @@ import { MatListModule } from '@angular/material/list';
 import { FacebookComponent } from './pages/facebook/facebook.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { SettingsComponent } from './pages/settings/settings.component';
-import { AuthService } from './services/auth.service';
-import { SidenavService } from './services/sidenav.service';
+import { AccountService } from './services/user.service';
 import { TransactionsComponent } from './pages/transactions/transactions.component';
 import { CardsComponent } from './pages/cards/cards.component';
+import { SendMoneyComponent } from './pages/send-money/send-money.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { CardsComponent } from './pages/cards/cards.component';
     SettingsComponent,
     TransactionsComponent,
     CardsComponent,
+    SendMoneyComponent,
   ],
   imports: [
     MatGridListModule,
@@ -66,9 +69,11 @@ import { CardsComponent } from './pages/cards/cards.component';
     MatSidenavModule,
     LayoutModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+    MatRadioModule
   ],
-  providers: [AuthService, SidenavService],
+  providers: [AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

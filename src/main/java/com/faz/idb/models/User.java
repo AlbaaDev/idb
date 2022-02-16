@@ -1,5 +1,6 @@
 package com.faz.idb.models;
 
+import com.faz.idb.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,14 +24,29 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 
+	@Column(name = "gender")
+	private Gender gender;
+
+	@Column(name = "adress")
+	private String adress;
+
+	@Column(name = "citys")
+	private String city;
+
+	@Column(name = "province")
+	private String province;
+
+	@Column(name = "postcode")
+	private long postCode;
+
+	@Column(name = "phone_number")
+	private String phoneNumber;
+
 	@Column(name = "email")
 	private String email;
 
 	@Column(name = "password")
 	private String password;
-
-	@Column(name = "adress")
-	private String adress;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "account_id", referencedColumnName = "id")

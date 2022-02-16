@@ -21,7 +21,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 
 /**
- * @author abi
+ * @author FAZLIU Arber
  * Class to filter the jwt token for autorizations inside the application 
  */
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {

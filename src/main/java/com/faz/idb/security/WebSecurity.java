@@ -21,7 +21,7 @@ import static com.faz.idb.security.SecurityConstants.*;
 
 
 /**
- * @author abi
+ * @author FAZLIU Arber
  * Class to integrate the security filters
  */
 @Configuration
