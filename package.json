@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@ngxs/logger-plugin": "^3.7.3-dev.master-90fdd58",
+    "@ngxs/store": "^3.7.3-dev.master-90fdd58"
+  }
+}

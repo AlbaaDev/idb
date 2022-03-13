@@ -1,12 +1,11 @@
-export class User {
-  firstName?: string;
-  lastName?: string;
-  gender?: number;
-  adress?: string;
-  city?: string;
-  province?: string;
-  postCode?: number;
-  phoneNumber?: string;
+import {IUser} from "../interfaces/IUser";
+
+export class User implements IUser {
   email?: string;
-  account?: string;
+  password?: string;
+
+  constructor(email: string, password: string) {
+    this.email = email;
+    this.password = password;
+  }
 }

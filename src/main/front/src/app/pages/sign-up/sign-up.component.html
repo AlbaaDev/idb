@@ -18,16 +18,26 @@
           </mat-error>
         </mat-form-field>
       </div>
+      <mat-form-field appearance="fill" class="w-50 mr-2">
+        <mat-label>Birth date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthDate" >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="(birthDate?.dirty || birthDate?.pristine) && birthDate?.errors?.['required']">
+          Birth date is required
+        </mat-error>
+      </mat-form-field>
       <mat-radio-group aria-label="Gender" formControlName="gender">
-        <mat-radio-button [value]="gender.MALE" >Male</mat-radio-button>
+        <label>Gender</label>
+        <mat-radio-button [value]="gender.MALE">Male</mat-radio-button>
         <mat-radio-button [value]="gender.FEMALE">Female</mat-radio-button>
         <mat-radio-button [value]="gender.OTHER">Other</mat-radio-button>
       </mat-radio-group>
       <mat-card-content>
         <mat-form-field appearance="standard" class="w-100">
-          <mat-label>Street adress </mat-label>
-          <input matInput formControlName="adress">
-          <mat-error *ngIf="(adress?.dirty || adress?.pristine) && adress?.errors?.['required']">
+          <mat-label>Street adress</mat-label>
+          <input matInput formControlName="street">
+          <mat-error *ngIf="(street?.dirty || street?.pristine) && street?.errors?.['required']">
             Street adress
           </mat-error>
         </mat-form-field>
@@ -77,7 +87,8 @@
                   [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <mat-error *ngIf="(password?.dirty || password?.pristine) && password?.invalid && password?.errors?.['required']">
+          <mat-error
+            *ngIf="(password?.dirty || password?.pristine) && password?.invalid && password?.errors?.['required']">
             Password is required
           </mat-error>
           <mat-error *ngIf="password?.dirty && password?.errors?.['minlength']">
@@ -92,10 +103,12 @@
                   [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <mat-error *ngIf="(confirmPassword?.dirty || confirmPassword?.pristine) && confirmPassword?.errors?.['required']">
+          <mat-error
+            *ngIf="(confirmPassword?.dirty || confirmPassword?.pristine) && confirmPassword?.errors?.['required']">
             Confirm password is required
           </mat-error>
-          <mat-error *ngIf="(confirmPassword?.dirty || confirmPassword?.pristine) && confirmPassword?.errors?.['mustMatch']">
+          <mat-error
+            *ngIf="(confirmPassword?.dirty || confirmPassword?.pristine) && confirmPassword?.errors?.['mustMatch']">
             Passwords must match
           </mat-error>
         </mat-form-field>

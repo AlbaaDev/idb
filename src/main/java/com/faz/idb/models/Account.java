@@ -1,27 +1,33 @@
+/**
+ * @author FAZLIU Arber
+ */
 package com.faz.idb.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
-@Data
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@DiscriminatorValue("account")
 public class Account {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private Long id;
-
-    @Column(name = "identifier")
-    private Long identifier;
 
     @Column(name = "amount")
     private Long amount;
 
-    @OneToOne(mappedBy = "account")
-    private User user;
+    @Column(name = "identifier")
+    private Long identifier;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private Customer customer;
 }

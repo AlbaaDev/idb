@@ -1,11 +1,14 @@
+<!--
+<router-outlet name="side-nav"></router-outlet>
+-->
 <mat-sidenav-container>
-  <mat-sidenav #sidenav class="side-nav" mode="side" opened>
+  <mat-sidenav class="side-nav" mode="side" opened>
     <mat-list role="list">
       <mat-list-item>
-        <button mat-button [routerLink]="['transactions']" routerLinkActive="active">Transactions</button>
+        <button mat-button [routerLink]="['account']" routerLinkActive="active">Account</button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button [routerLink]="['send']" routerLinkActive="active">Send mooney</button>
+        <button mat-button [routerLink]="['send']" routerLinkActive="active">Send money</button>
       </mat-list-item>
       <mat-list-item>
         <button mat-button [routerLink]="['cards']" routerLinkActive="active">Cards</button>
@@ -13,9 +16,15 @@
       <mat-list-item>
         <button mat-button [routerLink]="['settings']" routerLinkActive="active">Settings</button>
       </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['market']" routerLinkActive="active">Market</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['vault']" routerLinkActive="active">Safe vault</button>
+      </mat-list-item>
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

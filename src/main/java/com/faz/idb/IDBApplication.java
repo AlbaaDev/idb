@@ -16,5 +16,4 @@ public class IDBApplication {
     public static void main(String[] args) {
         SpringApplication.run(IDBApplication.class, args);
     }
-
 }

@@ -24,7 +24,6 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
-import { FacebookComponent } from './pages/facebook/facebook.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { AccountService } from './services/user.service';
@@ -33,46 +32,63 @@ import { CardsComponent } from './pages/cards/cards.component';
 import { SendMoneyComponent } from './pages/send-money/send-money.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { SideNavComponent } from './pages/side-nav/side-nav.component';
+import {HomeComponent} from "./pages/home/home.component";
+import { AccountComponent } from './pages/account/account.component';
+import { MainComponent } from './pages/main/main.component';
+import { MarketComponent } from './pages/market/market.component';
+import { VaultComponent } from './pages/vault/vault.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    SideBareComponent,
-    FooterComponent,
-    LoginComponent,
-    SignUpComponent,
-    DashboardComponent,
-    ResetPasswordComponent,
-    FacebookComponent,
-    SettingsComponent,
-    TransactionsComponent,
-    CardsComponent,
-    SendMoneyComponent,
-  ],
-  imports: [
-    MatGridListModule,
-    FormsModule,
-    BrowserModule,
-    AppRoutingModule,
-    MatMenuModule,
-    BrowserAnimationsModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatTabsModule,
-    MatCardModule,
-    MatSidenavModule,
-    LayoutModule,
-    MatListModule,
-    HttpClientModule,
-    MatSelectModule,
-    MatRadioModule
-  ],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        SideBareComponent,
+        FooterComponent,
+        LoginComponent,
+        SignUpComponent,
+        DashboardComponent,
+        ResetPasswordComponent,
+        SettingsComponent,
+        TransactionsComponent,
+        CardsComponent,
+        SendMoneyComponent,
+        PageNotFoundComponent,
+        SideNavComponent,
+        HomeComponent,
+        AccountComponent,
+        MainComponent,
+        MarketComponent,
+        VaultComponent
+    ],
+    imports: [
+        MatGridListModule,
+        FormsModule,
+        BrowserModule,
+        AppRoutingModule,
+        MatMenuModule,
+        BrowserAnimationsModule,
+        MatCheckboxModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatTabsModule,
+        MatCardModule,
+        MatSidenavModule,
+        LayoutModule,
+        MatListModule,
+        HttpClientModule,
+        MatSelectModule,
+        MatRadioModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+    ],
   providers: [AccountService],
   bootstrap: [AppComponent]
 })

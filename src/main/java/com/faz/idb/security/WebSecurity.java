@@ -1,6 +1,8 @@
 package com.faz.idb.security;
 
 import com.faz.idb.jwt.JwtFilter;
+import com.faz.idb.service.AbstractUserServiceImpl;
+import com.faz.idb.service.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,10 +34,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	private JwtFilter jwtFitler;
 	
 	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
-	
-	@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	@Autowired
+	private AbstractUserServiceImpl userService;
+
+	@Autowired
+	private CustomAuthenticationProvider authProvider;
 	
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -50,8 +55,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
-				.antMatchers(HttpMethod.POST, SIGN_UP_URL, LOG_IN_URL).permitAll()
-				.antMatchers(HttpMethod.GET, HOME, "/").permitAll()
+				.antMatchers(HttpMethod.POST, REGISTER_USERS_URL, LOG_IN_URL).permitAll()
+				.antMatchers(HttpMethod.GET, "/", HOME, GET_ACCOUNTS_URL).permitAll()
 				.antMatchers("/**.js").permitAll()
 				.antMatchers("/**.css").permitAll()
 				.anyRequest().authenticated()
@@ -64,12 +69,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     /**
      * Method where we defined a custom implementation of UserDetailsService 
      * to load user-specific data in the security framework
-     * @param auth
-     * @throws Exception
+     * @param auth the authentication builder
+     * @throws Exception A general exception
      */
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+        auth.authenticationProvider(authProvider);
     }
 
     @Bean
