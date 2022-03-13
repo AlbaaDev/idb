@@ -21,7 +21,7 @@ import java.util.List;
 @DiscriminatorValue("customer")
 public class Customer extends AbstractUser {
 
-    @OneToOne(mappedBy = "customer", cascade = {CascadeType.ALL})
+    @OneToOne(mappedBy = "customer", cascade = {CascadeType.ALL}, optional = false)
     @PrimaryKeyJoinColumn
     private Person person;
 

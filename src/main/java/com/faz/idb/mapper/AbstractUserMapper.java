@@ -6,6 +6,7 @@ import com.faz.idb.dto.CustomerDto;
 import com.faz.idb.models.AbstractUser;
 import com.faz.idb.models.Adviser;
 import com.faz.idb.models.Customer;
+import org.aspectj.lang.annotation.After;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
@@ -19,6 +20,11 @@ import org.mapstruct.factory.Mappers;
         collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED)
 public interface AbstractUserMapper {
     AbstractUserMapper INSTANCE = Mappers.getMapper(AbstractUserMapper.class);
+
+    @AfterMapping()
+    default void setCustomerForPerson(@MappingTarget Customer customer,  CustomerDto customerDto) {
+        customer.getPerson().setCustomer(customer);
+    }
 
     /**
      * @param userDto dto to map
