@@ -5,6 +5,7 @@
 package com.faz.idb.models;
 
 import lombok.*;
+import org.hibernate.annotations.DiscriminatorOptions;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.persistence.OneToOne;
 @NoArgsConstructor
 @Entity
 @DiscriminatorValue("adviser")
+@DiscriminatorOptions(force = true)
 public class Adviser extends AbstractUser {
     @OneToOne
     @JoinColumn(name = "id", nullable = false)

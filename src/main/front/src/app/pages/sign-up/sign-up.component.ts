@@ -14,6 +14,7 @@ import {Customer} from "../../models/customer";
 import {IAccount} from "../../interfaces/IAccount";
 import {ICustomer} from "../../interfaces/ICustomer";
 import {Account} from "../../models/account";
+import {IUser} from "../../interfaces/IUser";
 
 @Component({
   selector: 'app-sign-up',
@@ -100,6 +101,13 @@ export class SignUpComponent {
     if (this.signUpForm.invalid) {
       return;
     }
+
+    this.authService.register(this.createUser()).subscribe(() => {
+      this.router.navigateByUrl('/login');
+    });
+  }
+
+  createUser(): IUser {
     const adress: IAdress = new Adress(this.street?.value, this.city?.value, this.province?.value, this.postCode?.value);
     const contact: IContact = new Contact(this.phoneNumber?.value, this.email?.value);
     const person: IPerson = new Person(this.firstName?.value, this.lastName?.value, this.genderType?.value,
@@ -108,10 +116,7 @@ export class SignUpComponent {
     const accounts: IAccount[] = [];
     const account: IAccount = new Account(10000, 8797979);
     accounts.push(account);
-    const customer: ICustomer = new Customer(accounts, person, this.email?.value, this.password?.value);
-
-    this.authService.register(customer).subscribe(() => {
-      this.router.navigateByUrl('/login');
-    });
+    //TODO switch user type
+    return new Customer("customer", accounts, person, this.email?.value, this.password?.value);
   }
 }

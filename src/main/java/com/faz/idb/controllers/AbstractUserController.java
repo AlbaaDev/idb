@@ -61,7 +61,7 @@ public abstract class AbstractUserController<T extends AbstractUser> {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<JwtResponse> authenticate(@RequestBody UserLoginDto userDto) throws BadCredentialsException {
+    public ResponseEntity<JwtResponse> authenticate(@RequestBody AbstractUserDto userDto) throws BadCredentialsException {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDto.getEmail(),
                     userDto.getPassword()));

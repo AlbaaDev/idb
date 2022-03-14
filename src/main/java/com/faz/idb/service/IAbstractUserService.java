@@ -32,7 +32,7 @@ public interface IAbstractUserService<T extends AbstractUser> {
      * @param email the user id.
      * @return The account found in the database.
      */
-    T getUserByEmail(String email);
+        T getUserByEmail(String email);
 
     /**
      * Add an account.
