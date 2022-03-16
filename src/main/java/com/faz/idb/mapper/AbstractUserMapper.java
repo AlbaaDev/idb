@@ -22,8 +22,10 @@ public interface AbstractUserMapper {
     AbstractUserMapper INSTANCE = Mappers.getMapper(AbstractUserMapper.class);
 
     @AfterMapping()
-    default void setCustomerForPerson(@MappingTarget Customer customer,  CustomerDto customerDto) {
-        customer.getPerson().setCustomer(customer);
+    default void setAbstractUserForPerson(@MappingTarget AbstractUser abstractUser) {
+        if(abstractUser.getPerson() != null) {
+            abstractUser.getPerson().setAbstractUser(abstractUser);
+        }
     }
 
     /**

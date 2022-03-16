@@ -3,7 +3,6 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
-import {User} from "../models/user";
 import {IUser} from "../interfaces/IUser";
 
 @Injectable({
@@ -20,7 +19,7 @@ export class AccountService {
   }
 
   login(user: IUser): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/adviser/authenticate', user)
+    return this.http.post<any>('http://localhost:8080/customers/authenticate', user)
       .pipe(map(res => {
         localStorage.setItem('jwt', res.jwt);
         localStorage.setItem('loggedUser', JSON.stringify(res.loggedUser));

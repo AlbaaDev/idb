@@ -4,6 +4,8 @@
  **/
 package com.faz.idb.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.faz.idb.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,22 +23,45 @@ import javax.validation.constraints.NotEmpty;
 public class Person {
 
     @Id
+    @Column(updatable = false)
     private Long id;
 
-    @NotEmpty()
+    /*
+        @NotEmpty()
+    */
     private String firstName;
 
-    @NotEmpty()
+    /*
+        @NotEmpty()
+    */
     private String lastName;
 
-    @NotEmpty()
+    /*
+        @NotEmpty()
+    */
     private Gender gender;
 
-    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private AbstractUser abstractUser;
 
-    @OneToOne(mappedBy = "person")
-    private Adviser adviser;
+/*    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Entity
+    public class Person {
+
+        @Id
+        @Column(updatable = false)
+        private Long id;
+
+        private String test;
+
+        @MapsId
+        @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+        private User user;
+    }*/
 }

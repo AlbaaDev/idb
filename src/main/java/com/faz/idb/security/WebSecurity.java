@@ -1,7 +1,6 @@
 package com.faz.idb.security;
 
 import com.faz.idb.jwt.JwtFilter;
-import com.faz.idb.service.AbstractUserServiceImpl;
 import com.faz.idb.service.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,9 +31,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private JwtFilter jwtFitler;
-	
-	@Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
 	private CustomAuthenticationProvider authProvider;

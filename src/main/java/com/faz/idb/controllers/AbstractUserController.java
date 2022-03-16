@@ -5,13 +5,11 @@
 package com.faz.idb.controllers;
 
 import com.faz.idb.dto.AbstractUserDto;
-import com.faz.idb.dto.UserLoginDto;
 import com.faz.idb.exceptions.UserAlreadyExistsException;
 import com.faz.idb.jwt.JwtResponse;
 import com.faz.idb.jwt.JwtUtility;
 import com.faz.idb.mapper.AbstractUserMapper;
 import com.faz.idb.models.AbstractUser;
-import com.faz.idb.models.Customer;
 import com.faz.idb.service.IAbstractUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -70,7 +68,7 @@ public abstract class AbstractUserController<T extends AbstractUser> {
         } catch (UsernameNotFoundException e) {
             throw new UsernameNotFoundException("User not found", e);
         }
-        T user = userService.getUserByEmail(userDto.getEmail());
+        AbstractUser user = userService.getUserByEmail(userDto.getEmail());
         final String jwtToken = jwtUtility.generateToken(user.getEmail());
         return ResponseEntity.ok(new JwtResponse(jwtToken, toDto(user)));
     }

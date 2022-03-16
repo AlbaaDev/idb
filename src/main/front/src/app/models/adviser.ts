@@ -1,11 +1,15 @@
-import { Customer } from "./customer";
+import {IAdviser} from "../interfaces/IAdviser";
 import {User} from "./user";
+import {IAccount} from "../interfaces/IAccount";
+import {IPerson} from "../interfaces/IPerson";
 
-export class Adviser extends User {
-  customers: Customer[];
+export class Adviser extends User implements IAdviser {
+  accounts?: IAccount[];
+  person: IPerson;
 
-  constructor(customers: Customer[]) {
-    super();
-    this.customers = customers;
+  constructor(type: string,  accounts: IAccount[], person: IPerson, email: string, password: string) {
+    super(email, password, type);
+    this.accounts = accounts;
+    this.person = person;
   }
 }

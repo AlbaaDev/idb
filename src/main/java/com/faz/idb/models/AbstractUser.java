@@ -26,11 +26,11 @@ import java.util.Collections;
         @JsonSubTypes.Type(name = "customer", value = Customer.class),
         @JsonSubTypes.Type(name = "adviser", value = Adviser.class)
 })
+@DiscriminatorOptions(force = true)
 public abstract class AbstractUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(updatable = false, nullable = false)
     private Long id;
 
     @NotEmpty()
@@ -40,6 +40,10 @@ public abstract class AbstractUser {
     @NotEmpty()
     @Column(name = "password")
     private String password;
+
+    @OneToOne(mappedBy = "abstractUser", fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, optional = false)
+    @PrimaryKeyJoinColumn
+    private Person person;
 
     //TODO
     public Collection<GrantedAuthority> getAuthorities() {

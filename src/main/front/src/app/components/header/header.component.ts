@@ -8,13 +8,15 @@ import { AccountService } from '../../services/user.service';
 })
 export class HeaderComponent implements OnInit {
   opened = true;
-  firstName?: String;
-  lastName?: String;
+  firstName?: string;
+  lastName?: string;
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.firstName = JSON.parse(localStorage.getItem("loggedUser") as string).firstName;
-    this.lastName = JSON.parse(localStorage.getItem("loggedUser") as string).lastName;
+    if (localStorage.getItem("loggedUser")) {
+      this.firstName = JSON.parse(localStorage.getItem("loggedUser") as string).firstName;
+      this.lastName = JSON.parse(localStorage.getItem("loggedUser") as string).lastName;
+    }
   }
 
   isAuth() {

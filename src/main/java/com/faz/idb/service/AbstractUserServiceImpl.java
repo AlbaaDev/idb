@@ -6,8 +6,6 @@ package com.faz.idb.service;
 
 import com.faz.idb.exceptions.UserAlreadyExistsException;
 import com.faz.idb.models.AbstractUser;
-import com.faz.idb.models.Account;
-import com.faz.idb.models.Customer;
 import com.faz.idb.repositories.AbstractUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,27 +13,30 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
-public class AbstractUserServiceImpl<T extends AbstractUser> implements IAbstractUserService<T> {
+public abstract class AbstractUserServiceImpl<T extends AbstractUser> implements IAbstractUserService<T> {
+
+    private final AbstractUserRepository<T> abstractRepository;
 
     @Autowired
-    private AbstractUserRepository<T> userRepository;
+    protected AbstractUserServiceImpl(AbstractUserRepository<T> abstractRepository) {
+        this.abstractRepository = abstractRepository;
+    }
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public T getUserById(long id) {
-        return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("user not found"));
+        return abstractRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("user not found"));
     }
 
     @Override
     public T getUserByEmail(String email) {
-        return userRepository.findByEmail(email).orElse(null);
+        return abstractRepository.findByEmail(email).orElse(null);
     }
 
     @Override
@@ -46,21 +47,28 @@ public class AbstractUserServiceImpl<T extends AbstractUser> implements IAbstrac
             throw new UserAlreadyExistsException("An user already exists with this email.");
         }
         user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        T t = abstractRepository.save(user);
+        return t;
     }
 
     @Override
     public List<T> getAllUsers() {
-        return userRepository.findAll();
+        return abstractRepository.findAll();
     }
 
     @Override
     public void updateUser(T user) {
-        userRepository.save(user);
+        abstractRepository.save(user);
     }
 
     @Override
     public void deleteUserById(long id) {
-        userRepository.delete(getUserById(id));
+        abstractRepository.delete(getUserById(id));
+    }
+
+    @Override
+    public List<T> getUserByType() {
+        List<T> list =  this.abstractRepository.findAll();
+        return list;
     }
 }

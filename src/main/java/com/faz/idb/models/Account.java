@@ -3,6 +3,7 @@
  */
 package com.faz.idb.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,7 +28,8 @@ public class Account {
     @Column(name = "identifier")
     private Long identifier;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false , targetEntity = Customer.class)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Customer customer;
 }

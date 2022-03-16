@@ -9,8 +9,8 @@ export class Customer extends User implements ICustomer {
   adviser?: IAdviser;
   person: IPerson;
 
-  constructor(accounts: IAccount[], person: IPerson, email: string, password: string) {
-    super(email, password);
+  constructor(type: string,  accounts: IAccount[], person: IPerson, email: string, password: string) {
+    super(email, password, type);
     this.accounts = accounts;
     this.person = person;
   }

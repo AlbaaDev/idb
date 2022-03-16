@@ -6,6 +6,7 @@ package com.faz.idb.models;
 
 import lombok.*;
 import org.hibernate.annotations.DiscriminatorOptions;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

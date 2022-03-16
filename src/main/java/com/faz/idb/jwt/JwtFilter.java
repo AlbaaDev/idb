@@ -3,8 +3,11 @@
  */
 package com.faz.idb.jwt;
 
+import com.faz.idb.jwt.JwtUtility;
 import com.faz.idb.models.AbstractUser;
 import com.faz.idb.service.IAbstractUserService;
+import com.faz.idb.service.ICustomerService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,12 +34,12 @@ public class JwtFilter extends OncePerRequestFilter {
     private JwtUtility jwtUtility;
 
     @Autowired
-    private IAbstractUserService<AbstractUser> userService;
+    private ICustomerService customerService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest,
-                                    HttpServletResponse httpServletResponse,
-                                    FilterChain filterChain) throws ServletException, IOException {
+                                    @NotNull HttpServletResponse httpServletResponse,
+                                    @NotNull FilterChain filterChain) throws ServletException, IOException {
         String authorization = httpServletRequest.getHeader("Authorization");
         String jwtToken = null;
         String userName = null;
@@ -46,7 +49,7 @@ public class JwtFilter extends OncePerRequestFilter {
             userName = jwtUtility.getUsernameFromToken(jwtToken);
         }
         if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = (UserDetails) userService.getUserByEmail(userName);
+            UserDetails userDetails = (UserDetails) customerService.getUserByEmail(userName);
 
             if (Boolean.TRUE.equals(jwtUtility.validateToken(jwtToken, userDetails))) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken

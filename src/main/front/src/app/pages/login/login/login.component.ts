@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    const user: IUser = new User(email, password);
+    const user: IUser = new User(email, password, "customer");
     this.authService.login(user).subscribe(
       () => {
         this.router.navigateByUrl('/account');

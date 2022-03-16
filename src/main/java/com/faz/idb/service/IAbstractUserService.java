@@ -6,8 +6,10 @@ package com.faz.idb.service;
 
 import com.faz.idb.exceptions.UserAlreadyExistsException;
 import com.faz.idb.models.AbstractUser;
+import com.faz.idb.models.Customer;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 public interface IAbstractUserService<T extends AbstractUser> {
@@ -32,7 +34,7 @@ public interface IAbstractUserService<T extends AbstractUser> {
      * @param email the user id.
      * @return The account found in the database.
      */
-        T getUserByEmail(String email);
+      T getUserByEmail(String email);
 
     /**
      * Add an account.
@@ -55,4 +57,6 @@ public interface IAbstractUserService<T extends AbstractUser> {
      * @param id the user id.
      */
     void deleteUserById(long id);
-} 
+
+    List<T> getUserByType();
+}
