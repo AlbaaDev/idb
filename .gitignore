@@ -21,5 +21,5 @@ target/
 /src/main/front/node/
 /src/main/resources/static/
 HELP.md
-
+src/main/front/node_modules/
 
