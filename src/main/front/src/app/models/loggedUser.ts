@@ -1,11 +1,11 @@
 import {IUser} from "../interfaces/IUser";
 
 class LoggedUser {
-  jwt: string;
+  accessToken: string;
   user: IUser;
 
-  constructor(jwt: string, user: IUser) {
-    this.jwt = jwt;
+  constructor(accessToken: string, user: IUser) {
+    this.accessToken = accessToken;
     this.user = user;
   }
 }

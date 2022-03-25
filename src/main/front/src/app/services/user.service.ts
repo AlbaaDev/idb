@@ -10,6 +10,8 @@ import {IUser} from "../interfaces/IUser";
 })
 export class AccountService {
   isAuthenticated: boolean = false;
+  user?: IUser;
+
   //private userSubject: BehaviorSubject<User>;
   //public user: Observable<User>;
 
@@ -19,29 +21,35 @@ export class AccountService {
   }
 
   login(user: IUser): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/customers/authenticate', user)
+    return this.http.post<any>(`http://localhost:8080/${user.type}/authenticate`, user)
       .pipe(map(res => {
-        localStorage.setItem('jwt', res.jwt);
-        localStorage.setItem('loggedUser', JSON.stringify(res.loggedUser));
-    }));
+        this.user = res.user;
+        this.isAuthenticated = true;
+      }));
   }
 
-  logout() {
-    if (this.loggedIn()) {
-      localStorage.removeItem('jwt');
-      this.router.navigateByUrl('');
+  logout(): void {
+    if (this.isAuthenticated) {
+      this.http.post('http://localhost:8080/customer/logout', null)
+        .subscribe(
+          () => {
+            this.router.navigateByUrl('home');
+            this.isAuthenticated = false;
+          }
+        );
     }
   }
 
   getUser(): any {
-    return localStorage.getItem('loggedUser');
+    return this.user;
   }
 
   register(user: IUser) {
-    return this.http.post<{ jwt: string }>('http://localhost:8080/customers/register', user);
+    return this.http.post<IUser>('http://localhost:8080/customer/register', user);
   }
 
-  loggedIn(): boolean {
-    return localStorage.getItem('jwt') !== null;
+  loggedIn() {
+    this.http.get<boolean>('http://localhost:8080/customer/is-authenticated')
+      .subscribe((value) => this.isAuthenticated = value);
   }
 }

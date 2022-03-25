@@ -12,7 +12,6 @@ import {IContact} from "../../interfaces/IContact";
 import {Contact} from "../../models/contact";
 import {Customer} from "../../models/customer";
 import {IAccount} from "../../interfaces/IAccount";
-import {ICustomer} from "../../interfaces/ICustomer";
 import {Account} from "../../models/account";
 import {IUser} from "../../interfaces/IUser";
 

@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
     const user: IUser = new User(email, password, "customer");
     this.authService.login(user).subscribe(
       () => {
+        this.authService.isAuthenticated = true;
         this.router.navigateByUrl('/account');
       });
   }
